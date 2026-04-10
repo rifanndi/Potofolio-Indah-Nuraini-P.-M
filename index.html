@@ -17,30 +17,79 @@
         --main-blue: #0081cf;
         --soft-blue: #f0f7ff;
       }
+
+      /* Reset Global untuk mencegah overflow */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box; /* Sangat penting agar padding tidak menambah lebar elemen */
+      }
+
+      html,
+      body {
+        width: 100%;
+        overflow-x: hidden; /* Kunci utama agar tidak bisa scroll ke samping */
+        position: relative;
+      }
+
       body {
         font-family: "Inter", sans-serif;
         color: #1e293b;
         scroll-behavior: smooth;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
       }
+
       h1,
       h2,
       h3,
       .font-lexend {
         font-family: "Lexend", sans-serif;
+        word-wrap: break-word; /* Mencegah teks panjang merusak layout di HP */
       }
+
       .bg-dark-blue {
         background-color: var(--dark-blue);
       }
+
       .text-dark-blue {
         color: var(--dark-blue);
       }
+
       .hero-gradient {
         background: linear-gradient(135deg, var(--dark-blue) 0%, #003d63 100%);
+        width: 100%;
+        padding-left: 1rem; /* Padding aman untuk HP */
+        padding-right: 1rem;
       }
+
       .glass-card {
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px); /* Dukungan untuk Safari iOS */
         border: 1px solid rgba(0, 90, 146, 0.1);
+        max-width: 100%; /* Pastikan card tidak keluar layar */
+      }
+
+      /* Perbaikan Gambar agar Responsif */
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Utilitas Tambahan untuk Mobile */
+      @media (max-width: 640px) {
+        .hero-gradient {
+          padding-top: 3rem;
+          padding-bottom: 3rem;
+        }
+
+        /* Mencegah teks judul terlalu besar di HP yang bisa menyebabkan overflow */
+        h1 {
+          font-size: 1.875rem !important; /* Adjust sesuai kebutuhan */
+          line-height: 1.25;
+        }
       }
     </style>
   </head>
